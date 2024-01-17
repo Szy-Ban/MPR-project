@@ -80,7 +80,7 @@ public class StudentService {
             return response.getBody();
 
         } catch (HttpClientErrorException e) {
-            throw new RecordNotFoundException("Just to check error handling");
+            throw new RecordNotFoundException("Just to check error handling - client error - getAll");
         } catch (HttpServerErrorException e) {
             throw new RuntimeException();
         }
