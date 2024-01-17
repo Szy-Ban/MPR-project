@@ -15,6 +15,14 @@
 <!--        znacznik th:field pozwala nam pobrać wartość z tego inputu do pola name, zapis *{} jest odniesieniem do obiektu studenta zdefiniowanego w formularzu przez th:object-->
         <input id="name-input" th:field="*{name}"/>
     </label>
+    <label> <!-- todo dodane kierunki -->
+        Kierunek
+        <select id="kierunek-input" name="kierunek" th:field="*{kierunek}">
+            <option th:each="kierunek : ${T(com.example.monday.data.Kierunek).values()}"
+                    th:value="${kierunek}" th:text="${kierunek}">
+            </option>
+        </select>
+    </label>
     <label>
         Unit
         <select id="unit-input" name="unit" th:field="*{unit}">

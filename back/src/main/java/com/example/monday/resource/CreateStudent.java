@@ -1,5 +1,6 @@
 package com.example.monday.resource;
 
+import com.example.monday.data.Kierunek;
 import com.example.monday.data.StudentUnit;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,4 +19,7 @@ public class CreateStudent {
 
     @NotNull
     private StudentUnit unit;
+
+    @NotNull
+    private Kierunek kierunek;
 }

@@ -26,9 +26,10 @@ dzięki temu zapisowi powstanie wiersz dla każdego studenta z kolumnami zdefini
     <tr th:each="student : ${students}">
 <!--        możemy teraz odwoływać się do wartości przechowywanych w obiekcie student i wyświetlić je na froncie-->
 
+        <td th:text="${student.index}"></td>
         <td th:text="${student.name}"></td>
         <td th:text="${student.unit}"></td>
-        <td th:text="${student.index}"></td>
+        <td th:text="${student.kierunek}"></td>
     </tr>
     </tbody>
 </table>

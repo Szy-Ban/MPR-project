@@ -70,7 +70,7 @@ public class StudentService {
         }
     }
 
-
+    //todo dodane - getAll studentów
     public List<StudentDto> getAll() {
         try {
             ResponseEntity<List<StudentDto>> response = restTemplate.exchange(API_URL, HttpMethod.GET, null,
