@@ -63,4 +63,12 @@ public class StudentService {
                 .map(studentMapper::toDto)
                 .toList();
     }
+
+    public List<StudentDto> getAll() {  //odwołujemy się do Student
+        return studentRepository.findAll()
+                .stream()
+                .map(studentMapper::toDto)
+                .toList();
+    }
+
 }

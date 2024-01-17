@@ -53,4 +53,9 @@ public class StudentResource {
         return studentService.getStudentsByName(name);
     }
 
+    @GetMapping("/getAll")
+    public List<StudentDto> getAll() {
+        return studentService.getAll();
+    }
+
 }

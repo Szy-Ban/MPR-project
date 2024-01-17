@@ -1,6 +1,5 @@
 package com.example.monday.resource;
 
-import com.example.monday.data.StudentRepository;
 import com.example.monday.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class StudentPageController {
 
-    private final StudentRepository studentRepository;
+//    private final StudentRepository studentRepository;
     private final StudentService studentService;
 
     @GetMapping//korzystamy z adnotacji znanych nam z restowych kontrollerów, żeby określić metodę (opcjonalnie też ścieżkę do metody)
-    public String returnStudentsPage(Model model, String name) { // jeśli chcemy operować danymi na widoku to w parametrze zawsze musimy pobrać Model - jest to model ze wzorca MVC
-        model.addAttribute("name", name); //dodanie do modelu atrybutu o konkretnej nazwie pozwoli nam następnie na widoku pobrać jego wartość po nadanej tu nazwie
-        var students = studentRepository.findAll();
+    public String returnStudentsPage(Model model) { // jeśli chcemy operować danymi na widoku to w parametrze zawsze musimy pobrać Model - jest to model ze wzorca MVC
+        //model.addAttribute("name", name); //dodanie do modelu atrybutu o konkretnej nazwie pozwoli nam następnie na widoku pobrać jego wartość po nadanej tu nazwie
+        var students = studentService.getAll();
         model.addAttribute("students", students);
         return "index"; //z metod zawsze zwracamy Stringa i jako wartość wstawiamy nazwę szablonu thymeleafowego (pliku html)
     }
