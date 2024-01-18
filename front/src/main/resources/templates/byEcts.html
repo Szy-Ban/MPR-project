@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukaj po ECTS</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<form method="POST" th:action="@{/students-page/byEcts}">
+    <label>
+        Punkty ECTS
+        <input id="ects-input" name="ects"/>
+    </label><hr>
+    <button type="submit">Search</button>
+</form>
+<hr>
+<table>
+    <thead>
+    <tr>
+        <th>Index</th>
+        <th>Imie</th>
+        <th>Oddział</th>
+        <th>Kierunek</th>
+        <th>Punkty ECTS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${studenciEcts}">
+        <td th:text="${student.index}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.unit}"></td>
+        <td th:text="${student.kierunek}"></td>
+        <td th:text="${student.ects}"></td>
+    </tr>
+    </tbody>
+</table><hr>
+<a th:href="@{/students-page}">Powrót na strone główną</a>
+<footer th:insert="footer.html"></footer>
+</body>
+</html>

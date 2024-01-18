@@ -59,6 +59,11 @@ public class StudentResource {
         return studentService.getStudentsByKierunek(kierunek);
     }
 
+    @GetMapping("/byEcts")
+    public List<StudentDto> getStudentsByECTS(@RequestParam Long ects) {
+        return studentService.getStudentsByEcts(ects);
+    }
+
     @GetMapping
     public List<StudentDto> getAll() {
         return studentService.getAll();

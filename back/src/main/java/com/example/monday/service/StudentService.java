@@ -79,4 +79,11 @@ public class StudentService {
                 .toList();
     }
 
+    public List<StudentDto> getStudentsByEcts(Long ects) {
+        return studentRepository.getStudentsByEcts(ects)
+                .stream()
+                .map(studentMapper::toDto)
+                .toList();
+    }
+
 }

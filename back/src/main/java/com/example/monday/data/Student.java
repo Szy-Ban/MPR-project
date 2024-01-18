@@ -11,13 +11,13 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Student {
 
-    public Student(String name, StudentUnit unit, Kierunek kierunek, Integer ects) {
+    public Student(String name, StudentUnit unit, Kierunek kierunek, Long ects) {
         this.name = name;
         this.unit = unit;
         this.kierunek = kierunek;
         this.ects = ects;
     }
-    public Student(String name, StudentUnit unit, Long index, Kierunek kierunek, Integer ects) {
+    public Student(String name, StudentUnit unit, Long index, Kierunek kierunek, Long ects) {
         this.name = name;
         this.unit = unit;
         this.index = index;
@@ -29,7 +29,7 @@ public class Student {
     @GeneratedValue
     private UUID id;
     private String name;
-    private Integer ects;
+    private Long ects;
     @Enumerated(EnumType.STRING)
     private StudentUnit unit;
     @Enumerated(EnumType.STRING)

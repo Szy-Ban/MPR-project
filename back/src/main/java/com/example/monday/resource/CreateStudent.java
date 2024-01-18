@@ -24,5 +24,5 @@ public class CreateStudent {
     private Kierunek kierunek;
 
     @NotNull
-    private Integer ects;
+    private Long ects;
 }

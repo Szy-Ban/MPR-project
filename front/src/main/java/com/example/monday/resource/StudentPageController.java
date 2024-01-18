@@ -1,6 +1,5 @@
 package com.example.monday.resource;
 
-import com.example.monday.data.Kierunek;
 import com.example.monday.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -73,6 +72,19 @@ public class StudentPageController {
         var filteredStudents = studentService.getStudentsByKierunek(studentDto.kierunek());
         model.addAttribute("studenciKierunek", filteredStudents);
         return "byKierunek";
+    }
+
+    @GetMapping("/byEcts")
+    public String getStudentsByEcts(Model model){
+        model.addAttribute("studenciEctsData", new StudentDtoEcts());
+        return "byEcts";
+    }
+
+    @PostMapping("/byEcts")
+    public String getStudentsByEctsSecond(Model model, @ModelAttribute StudentDto studentDto){
+        var filteredStudents = studentService.getStudentsByECTS(studentDto.ects());
+        model.addAttribute("studenciEcts", filteredStudents);
+        return "byEcts";
     }
 
 }

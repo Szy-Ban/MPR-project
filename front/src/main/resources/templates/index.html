@@ -46,8 +46,9 @@ dzięki temu zapisowi powstanie wiersz dla każdego studenta z kolumnami zdefini
 <h4>MENU AKCJI:</h4>
 <!--kolejne zastosowanie th:href - tym razem jest to odwołanie do adresu w naszej aplikacji.
 o przeniesienie nas na nowy adres zadba znacznik <a>, a zwrócenie odpowiedniego pliku html będzie obsłużone przez kontroler-->
-<a th:href="@{/students-page/add}">Dodaj Studenta</a><br>
-<a th:href="@{/students-page/byKierunek}">Wyszukaj Studenta po kierunku</a>
+<a th:href="@{/students-page/add}">Dodaj Studenta</a><br><br>
+<a th:href="@{/students-page/byKierunek}">Wyszukaj Studenta po kierunku</a><br><br>
+<a th:href="@{/students-page/byEcts}">Wyszukaj Studenta po ECTS</a><br><br>
 </body>
 <!--znacznik th:insert z kolei pozwala nam korzystać z "komponentów" - fragmentów plików html, które mogą być reużywalne na wielu stronach
 w tym wypadku dopuszczone jest podanie samej nazwy pliku, ponieważ footer.html znajduje się w tym samym folderze co nasz plik
