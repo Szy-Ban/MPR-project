@@ -12,11 +12,12 @@ public class StudentMapper {
                 student.getName(),
                 student.getUnit(),
                 student.getKierunek(),
+                student.getEcts(),
                 student.getIndex()
         );
     }
 
     public Student toEntity(CreateStudent createStudent) {
-        return new Student(createStudent.getName(), createStudent.getUnit(), createStudent.getKierunek());
+        return new Student(createStudent.getName(), createStudent.getUnit(), createStudent.getKierunek(), createStudent.getEcts());
     }
 }

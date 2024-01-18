@@ -30,9 +30,10 @@ dzięki temu zapisowi powstanie wiersz dla każdego studenta z kolumnami zdefini
         <td th:text="${student.name}"></td>
         <td th:text="${student.unit}"></td>
         <td th:text="${student.kierunek}"></td>
+        <td th:text="${student.ects}"></td>
     </tr>
     </tbody>
-</table>
+</table><hr>
 <!--kolejne zastosowanie th:href - tym razem jest to odwołanie do adresu w naszej aplikacji.
 o przeniesienie nas na nowy adres zadba znacznik <a>, a zwrócenie odpowiedniego pliku html będzie obsłużone przez kontroler-->
 <a th:href="@{/students-page/add}">Dodaj Studenta</a>

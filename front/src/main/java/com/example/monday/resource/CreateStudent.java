@@ -22,4 +22,7 @@ public class CreateStudent {
 
     @NotNull
     private Kierunek kierunek;
+
+    @NotNull
+    private Integer ects;
 }

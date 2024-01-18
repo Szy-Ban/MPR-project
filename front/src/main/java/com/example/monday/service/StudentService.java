@@ -71,6 +71,7 @@ public class StudentService {
     }
 
     //todo dodane - getAll studentów
+    //todo nie wiem czy to tutaj ale to aby się wyświetlał pierwszy student bez odświezania strony
     public List<StudentDto> getAll() {
         try {
             ResponseEntity<List<StudentDto>> response = restTemplate.exchange(API_URL, HttpMethod.GET, null,

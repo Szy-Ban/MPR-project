@@ -1,0 +1,25 @@
+body{
+    text-align: center;
+}
+
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: 3px black solid;
+}
+
+td, th {
+    text-align: center;
+    border: none;
+    padding: 10px;
+}
+
+th {
+    border: black 2px dashed;
+}
+
+td {
+    border: black 2px dashed;
+}
