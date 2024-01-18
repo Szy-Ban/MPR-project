@@ -18,8 +18,14 @@ td, th {
 
 th {
     border: black 2px dashed;
+    background: powderblue;
 }
 
 td {
     border: black 2px dashed;
+    background: lightskyblue;
+}
+
+a {
+    text-decoration: none;
 }

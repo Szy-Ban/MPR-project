@@ -62,15 +62,15 @@ public class StudentPageController {
 //    }
 
     @GetMapping("/byKierunek")
-    public String getStudentBySemester(Model model){
+    public String getStudentsByKierunek(Model model){
         model.addAttribute("studenciKierunekData", new StudentDtoKierunek());
         return "byKierunek";
     }
 
     @PostMapping("/byKierunek")
-    public String getStudentBySemesterAndRefresh(Model model, @ModelAttribute StudentDto studentDto){
-        var filteredStudents = studentService.getStudentsByKierunek(studentDto.kierunek());
-        model.addAttribute("studenciKierunek", filteredStudents);
+    public String getStudentsByKierunekSecond(Model model, @ModelAttribute StudentDto studentDto){
+        var listaStudentow = studentService.getStudentsByKierunek(studentDto.kierunek());
+        model.addAttribute("studenciKierunek", listaStudentow);
         return "byKierunek";
     }
 
@@ -82,8 +82,8 @@ public class StudentPageController {
 
     @PostMapping("/byEcts")
     public String getStudentsByEctsSecond(Model model, @ModelAttribute StudentDto studentDto){
-        var filteredStudents = studentService.getStudentsByECTS(studentDto.ects());
-        model.addAttribute("studenciEcts", filteredStudents);
+        var listaStudentow = studentService.getStudentsByECTS(studentDto.ects());
+        model.addAttribute("studenciEcts", listaStudentow);
         return "byEcts";
     }
 

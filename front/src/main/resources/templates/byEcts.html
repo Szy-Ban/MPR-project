@@ -6,10 +6,11 @@
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
+<p data-test="hello-message" th:text="'Spis studentów PJATK - szukaj po punktach ECTS'"></p>
 <form method="POST" th:action="@{/students-page/byEcts}">
     <label>
         Punkty ECTS
-        <input id="ects-input" name="ects"/>
+        <input id="ects-input" required type="number" name="ects"/>
     </label><hr>
     <button type="submit">Search</button>
 </form>

@@ -11,7 +11,7 @@
 <form method="POST" th:action="@{/students-page/byKierunek}">
 <label>
     Kierunek
-    <select id="kierunek-input" name="kierunek">
+    <select id="kierunek-input" type="text" name="kierunek">
         <option th:each="kierunekEnum : ${T(com.example.monday.data.Kierunek).values()}"
                 th:value="${kierunekEnum}" th:text="${kierunekEnum}">
         </option>

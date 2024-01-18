@@ -14,7 +14,7 @@
     <label>
         Name
 <!--        znacznik th:field pozwala nam pobrać wartość z tego inputu do pola name, zapis *{} jest odniesieniem do obiektu studenta zdefiniowanego w formularzu przez th:object-->
-        <input id="name-input" th:field="*{name}"/>
+        <input id="name-input" required type="text" th:field="*{name}"/>
     </label><hr>
     <label> <!-- todo dodane kierunki i punkty ECTS-->
         Kierunek
@@ -38,7 +38,7 @@
     </label><hr>
     <label>
         Punkty ECTS
-        <input id="ects-input" th:field="*{ects}"/>
+        <input id="ects-input" required type="number" th:field="*{ects}"/>
     </label><hr>
     <button type="submit">Dodaj</button>
 </form>
