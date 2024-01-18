@@ -14,12 +14,21 @@ jaki zostanie zwrócony do klienta/użytkownika -->
 możemy tu zawierać podstawowe konstrucje javowe
 zapis z ${} pozwala nam odwołać się do wartości zmiennej, lub wartości wyliczonej zmiennej jak ma to miejsce w przykładzie poniżej
 wartość name jest pobierana na podstawie atrybutu dodanego do modelu w metodzie controllera-->
-<p data-test="hello-message" th:text="'Szymon Baniewicz'"></p>
+<p data-test="hello-message" th:text="'Spis studentów PJATK | Autor: Szymon Baniewicz'"></p>
 <!-- th:if i th:unless to odpowiednik konstrukcji if else, z tym wyjątkiem, że znacznik th:unless musi dostać tu ten sam warunek co if aby zadziałać jak else -->
 <!--Hello <p th:if="${name} != null" th:text="${name}"></p>-->
 <!--<p th:unless="${name} != null">World</p>-->
 
 <table>
+    <thead>
+    <tr>
+        <th>Index</th>
+        <th>Imie</th>
+        <th>Oddział</th>
+        <th>Kierunek</th>
+        <th>Punkty ECTS</th>
+    </tr>
+    </thead>
     <tbody>
 <!--    konstrukcja forEach w thymeleaf realizowana jest przez znacznik th:each, a dalej zapis wygląda jak w forEach w javie
 dzięki temu zapisowi powstanie wiersz dla każdego studenta z kolumnami zdefiniowanymi poniżej-->
@@ -34,6 +43,7 @@ dzięki temu zapisowi powstanie wiersz dla każdego studenta z kolumnami zdefini
     </tr>
     </tbody>
 </table><hr>
+<h4>MENU AKCJI:</h4>
 <!--kolejne zastosowanie th:href - tym razem jest to odwołanie do adresu w naszej aplikacji.
 o przeniesienie nas na nowy adres zadba znacznik <a>, a zwrócenie odpowiedniego pliku html będzie obsłużone przez kontroler-->
 <a th:href="@{/students-page/add}">Dodaj Studenta</a>
