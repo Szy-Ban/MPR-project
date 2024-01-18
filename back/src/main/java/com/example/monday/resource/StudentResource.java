@@ -1,5 +1,6 @@
 package com.example.monday.resource;
 
+import com.example.monday.data.Kierunek;
 import com.example.monday.data.Student;
 import com.example.monday.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -53,9 +54,15 @@ public class StudentResource {
         return studentService.getStudentsByName(name);
     }
 
+    @GetMapping("/byKierunek")
+    public List<StudentDto> getStudentsByKierunek(@RequestParam Kierunek kierunek) {
+        return studentService.getStudentsByKierunek(kierunek);
+    }
+
     @GetMapping
     public List<StudentDto> getAll() {
         return studentService.getAll();
     }
+
 
 }

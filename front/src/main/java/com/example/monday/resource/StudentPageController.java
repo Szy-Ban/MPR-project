@@ -1,5 +1,6 @@
 package com.example.monday.resource;
 
+import com.example.monday.data.Kierunek;
 import com.example.monday.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -45,4 +46,33 @@ public class StudentPageController {
         //do nazwy szablonu musimy dodać 'redirect:{ścieżka do strony}' aby zostać przeniesionym po kliknięciu przycisku na inną stronę
         //robimy to tylko w przypadku gdy jest to przeniesienie na podstawie akcji użytkownika, jeśli udostępniamy stronę na podstawie adresu w przeglądarce podajemy tylko nazwę szablonu
     }
+
+
+//    @GetMapping("/byKierunek") // ustawiamy ścieżkę, do zwrócenia stron zawsze używamy metody GET, jest to standardowa metoda
+//    //jakiej używają przeglądarki do pobrania strony
+//    public String getStudentsByKierunek(Model model) {
+//        model.addAttribute("kierunek", null);
+//        return "studentsByKierunek";
+//    }
+//    @PostMapping("/getStudentsByKierunek")
+//    public String returnStudentsByKierunek(Model model, @ModelAttribute Kierunek kierunek) {
+//        var students = studentService.getStudentsByKierunek(kierunek);
+//        model.addAttribute("students", students);
+//        model.addAttribute("kierunek", kierunek);
+//        return "studentsByKierunek";
+//    }
+
+    @GetMapping("/byKierunek")
+    public String getStudentBySemester(Model model){
+        model.addAttribute("studenciKierunekData", new StudentDtoKierunek());
+        return "byKierunek";
+    }
+
+    @PostMapping("/byKierunek")
+    public String getStudentBySemesterAndRefresh(Model model, @ModelAttribute StudentDto studentDto){
+        var filteredStudents = studentService.getStudentsByKierunek(studentDto.kierunek());
+        model.addAttribute("studenciKierunek", filteredStudents);
+        return "byKierunek";
+    }
+
 }

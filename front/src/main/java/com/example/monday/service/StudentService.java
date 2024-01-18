@@ -1,5 +1,6 @@
 package com.example.monday.service;
 
+import com.example.monday.data.Kierunek;
 import com.example.monday.data.StudentUnit;
 import com.example.monday.excetionhandler.InvalidStudentNameException;
 import com.example.monday.excetionhandler.RecordNotFoundException;
@@ -54,14 +55,14 @@ public class StudentService {
 //                .body(Mono.just(createStudent), CreateStudent.class)
                 .retrieve()
                 .toBodilessEntity()
-                .subscribe(entity ->log.info("Received status " + entity.getStatusCode()));
+                .block();
     }
 
     public StudentDto getStudentById(UUID id) {
         //wykonujemy tu synchroniczne zapytanie do pobrania studenta
         try {
             return restTemplate.getForObject(API_URL + "/" + id, StudentDto.class);
-        // w przypadku błędów z grupy 4**, w e mamy metody pozwalające operować na otrzymanej odpowiedzi (np. pobrać jej body i sprawdzić przyczynę lub zweryfikować jaki konkretnie kod otrzymaliśmy)
+            // w przypadku błędów z grupy 4**, w e mamy metody pozwalające operować na otrzymanej odpowiedzi (np. pobrać jej body i sprawdzić przyczynę lub zweryfikować jaki konkretnie kod otrzymaliśmy)
         } catch (HttpClientErrorException e) {
             throw new RecordNotFoundException("Just to check error handling");
             // w przypadku błędów z grupy 5**, w e mamy metody pozwalające operować na otrzymanej odpowiedzi (np. pobrać jej body i sprawdzić przyczynę lub zweryfikować jaki konkretnie kod otrzymaliśmy)
@@ -75,7 +76,8 @@ public class StudentService {
     public List<StudentDto> getAll() {
         try {
             ResponseEntity<List<StudentDto>> response = restTemplate.exchange(API_URL, HttpMethod.GET, null,
-                    new ParameterizedTypeReference<List<StudentDto>>(){}
+                    new ParameterizedTypeReference<List<StudentDto>>() {
+                    }
             );
 
             return response.getBody();
@@ -110,12 +112,25 @@ public class StudentService {
         try {
             //tu wysyłamy synchroniczne zapytanie (odbywa się to niejawnie przy przekształcaniu flux w stream) w celu zwrócenia
             //studentów jako listy z całości w odpowiedzi na wysłane do naszej aplikacji zapytanie
-        return webClient.get()
-                .uri(uriBuilder -> uriBuilder.queryParam("name", name).build())
-                .retrieve()
-                .bodyToFlux(StudentDto.class)
-                .toStream()
-                .toList();
+            return webClient.get()
+                    .uri(uriBuilder -> uriBuilder.queryParam("name", name).build())
+                    .retrieve()
+                    .bodyToFlux(StudentDto.class)
+                    .toStream()
+                    .toList();
+        } catch (HttpClientErrorException e) {
+            throw new RecordNotFoundException("Just to check error handling");
+        } catch (HttpServerErrorException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    public List<StudentDto> getStudentsByKierunek(Kierunek kierunek) {
+        try {
+            return restTemplate.exchange(API_URL + "/byKierunek?kierunek=" + kierunek,
+                            HttpMethod.GET, null, new ParameterizedTypeReference<List<StudentDto>>() {
+                            })
+                    .getBody();
         } catch (HttpClientErrorException e) {
             throw new RecordNotFoundException("Just to check error handling");
         } catch (HttpServerErrorException e) {

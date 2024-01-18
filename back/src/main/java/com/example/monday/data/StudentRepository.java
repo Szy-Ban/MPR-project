@@ -29,6 +29,8 @@ public interface StudentRepository extends CrudRepository<Student, UUID> {
     //@Query("from Student")
     List<Student> findAll();
 
+    //@Query("select s from Student s where s.kierunek = 'GDANSK'")
+    List<Student> getStudentsByKierunek(Kierunek kierunek);
     default List<Student> getFromGdanskByName(String name) {
         return getByNameAndUnit(name, StudentUnit.GDANSK);
     }

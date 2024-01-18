@@ -1,5 +1,6 @@
 package com.example.monday.service;
 
+import com.example.monday.data.Kierunek;
 import com.example.monday.data.Student;
 import com.example.monday.data.StudentRepository;
 import com.example.monday.data.StudentUnit;
@@ -66,6 +67,13 @@ public class StudentService {
 
     public List<StudentDto> getAll() {  //odwołujemy się do Student
         return studentRepository.findAll()
+                .stream()
+                .map(studentMapper::toDto)
+                .toList();
+    }
+
+    public List<StudentDto> getStudentsByKierunek(Kierunek kierunek) {
+        return studentRepository.getStudentsByKierunek(kierunek)
                 .stream()
                 .map(studentMapper::toDto)
                 .toList();
