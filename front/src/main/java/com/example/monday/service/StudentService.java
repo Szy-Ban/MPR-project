@@ -7,6 +7,7 @@ import com.example.monday.resource.StudentDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -151,9 +152,16 @@ public class StudentService {
 
     public void updateStudent(StudentDto studentDto) {
         try {
-             restTemplate.exchange(API_URL + "/editStudent?studentDto=" + studentDto,
-                            HttpMethod.GET, null, new ParameterizedTypeReference<StudentDto>() {
-                            })
+//             restTemplate.exchange(API_URL + "/editStudent?studentDto=" + studentDto,
+//                            HttpMethod.GET, null, new ParameterizedTypeReference<StudentDto>() {
+//                            })
+//                    .getBody();
+
+            // Utworzenie obiektu HttpEntity z obiektem studentDto
+            HttpEntity<StudentDto> requestEntity = new HttpEntity<>(studentDto);
+
+            restTemplate.exchange(API_URL + "/editStudent", HttpMethod.POST, requestEntity,
+                            new ParameterizedTypeReference<StudentDto>() {})
                     .getBody();
         } catch (HttpClientErrorException e) {
             throw new RecordNotFoundException("Just to check error handling");
