@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj Dane Studenta</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<form method="post" th:action="@{/updateStudent}" th:object="${studentData}">
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="index">Indeks:</label>
+    <input id="index" th:field="*{index}" type="text" />
+
+    <label for="name">Imię:</label>
+    <input id="name" th:field="*{name}" type="text" />
+
+    <select id="unit-input" name="unit" th:field="*{unit}">
+        <option th:each="unit : ${T(com.example.monday.data.StudentUnit).values()}"
+                th:value="${unit}" th:text="${unit}">
+        </option>
+    </select>
+
+    <select id="kierunek-input" name="kierunek" th:field="*{kierunek}">
+        <option th:each="kierunek : ${T(com.example.monday.data.Kierunek).values()}"
+                th:value="${kierunek}" th:text="${kierunek}">
+        </option>
+    </select>
+
+    <label for="ects">Punkty ECTS:</label>
+    <input id="ects" th:field="*{ects}" type="number" />
+
+    <button type="submit">Aktualizuj</button>
+</form>
+</body>
+</html>

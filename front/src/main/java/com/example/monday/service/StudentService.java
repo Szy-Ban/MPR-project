@@ -1,8 +1,6 @@
 package com.example.monday.service;
 
 import com.example.monday.data.Kierunek;
-import com.example.monday.data.StudentUnit;
-import com.example.monday.excetionhandler.InvalidStudentNameException;
 import com.example.monday.excetionhandler.RecordNotFoundException;
 import com.example.monday.resource.CreateStudent;
 import com.example.monday.resource.StudentDto;
@@ -148,6 +146,33 @@ public class StudentService {
             throw new RecordNotFoundException("Just to check error handling");
         } catch (HttpServerErrorException e) {
             throw new RuntimeException();
+        }
+    }
+
+    public StudentDto updateStudent(StudentDto studentDto) {
+        try {
+            return restTemplate.exchange(API_URL + "/updateStudent",
+                            HttpMethod.POST, null, new ParameterizedTypeReference<StudentDto>() {
+                            })
+                    .getBody();
+        } catch (HttpClientErrorException e) {
+            throw new RecordNotFoundException("Just to check error handling");
+        } catch (HttpServerErrorException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    public StudentDto getStudentByIndex(Long index) {
+        try {
+            return restTemplate.exchange(
+                    API_URL + "/byIndex?index=" + index,
+                            HttpMethod.GET, null, new ParameterizedTypeReference<StudentDto>() {
+                            })
+                    .getBody();
+        } catch (HttpClientErrorException e) {
+            throw new RecordNotFoundException("Student not found: " + e.getMessage());
+        } catch (HttpServerErrorException e) {
+            throw new RuntimeException("Server error during student retrieval");
         }
     }
 

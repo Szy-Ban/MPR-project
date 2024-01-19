@@ -86,4 +86,31 @@ public class StudentService {
                 .toList();
     }
 
+    public StudentDto getStudentByIndex(Long index) {
+        Student student = studentRepository.getStudentByIndex(index);
+        if (student != null) {
+            return studentMapper.toDto(student);
+        } else {
+            throw new RuntimeException("Student with id " + index + " not found");
+        }
+    }
+
+
+    public StudentDto updateStudent(StudentDto studentDto) {
+        Student student = studentRepository.getStudentByIndex(studentDto.index());
+        if (student != null) {
+
+            student.setName(studentDto.name());
+            student.setUnit(studentDto.unit());
+            student.setKierunek(studentDto.kierunek());
+            student.setEcts(studentDto.ects());
+
+            student = studentRepository.save(student);
+
+            return studentMapper.toDto(student);
+        } else {
+            throw new RuntimeException("Student not found");
+        }
+    }
+
 }

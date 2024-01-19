@@ -64,6 +64,16 @@ public class StudentResource {
         return studentService.getStudentsByEcts(ects);
     }
 
+    @GetMapping("/byIndex")
+    public StudentDto getStudentByIndex(@RequestParam Long index) {
+        return studentService.getStudentByIndex(index);
+    }
+
+    @GetMapping("/updateStudent")
+    public StudentDto getStudentByIndex(@RequestParam StudentDto studentDto) {
+        return studentService.updateStudent(studentDto);
+    }
+
     @GetMapping
     public List<StudentDto> getAll() {
         return studentService.getAll();

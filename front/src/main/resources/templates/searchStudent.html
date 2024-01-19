@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukaj Studenta</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<form th:action="@{editStudent}" method="get">
+    <label for="index">Indeks:</label>
+    <input id="index" name="index" type="text" />
+    <button type="submit">Wyszukaj</button>
+</form>
+</body>
+</html>

@@ -34,6 +34,8 @@ public interface StudentRepository extends CrudRepository<Student, UUID> {
 
     List<Student> getStudentsByEcts(Long ects);
 
+    Student getStudentByIndex(Long index);
+
     default List<Student> getFromGdanskByName(String name) {
         return getByNameAndUnit(name, StudentUnit.GDANSK);
     }

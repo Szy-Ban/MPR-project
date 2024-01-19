@@ -4,10 +4,7 @@ import com.example.monday.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller //Użycie tej adnotacji definiuje Springowego beana, od @RestController, którego używaliśmy do tej pory różni się tym,
@@ -85,6 +82,30 @@ public class StudentPageController {
         var listaStudentow = studentService.getStudentsByECTS(studentDto.ects());
         model.addAttribute("studenciEcts", listaStudentow);
         return "byEcts";
+    }
+
+    //todo edycja poniżej - coś się nie zgrywa w momencie klikania zaktualizowania danych przy przejsciu
+    //todo na stronę updateStudent (nie powinno wcale przechodzić)
+    @PostMapping("/updateStudent")
+    public String updateStudent(@ModelAttribute("studentData") StudentDto studentDto) {
+        studentService.updateStudent(studentDto);
+        return "redirect:/students-page"; // Przekierowanie do listy studentów
+    }
+
+    @GetMapping("/searchStudent")
+    public String showEditStudentForm(Model model) {
+        model.addAttribute("studentSearchData", new StudentDtoNotEmpty()); // Pusty obiekt DTO do wyszukiwania
+        return "searchStudent";
+    }
+
+    @GetMapping("/editStudent")
+    public String editStudentForm(Model model, @RequestParam Long index) {
+        StudentDto student = studentService.getStudentByIndex(index);
+        if(student == null) {
+            return "student not found";
+        }
+        model.addAttribute("studentData", student);
+        return "editStudent";
     }
 
 }
