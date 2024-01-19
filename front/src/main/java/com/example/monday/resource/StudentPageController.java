@@ -84,13 +84,13 @@ public class StudentPageController {
         return "byEcts";
     }
 
-    //todo edycja poniżej - coś się nie zgrywa w momencie klikania zaktualizowania danych przy przejsciu
-    //todo na stronę updateStudent (nie powinno wcale przechodzić)
-    @PostMapping("/updateStudent")
-    public String updateStudent(@ModelAttribute("studentData") StudentDto studentDto) {
-        studentService.updateStudent(studentDto);
-        return "redirect:/students-page"; // Przekierowanie do listy studentów
-    }
+    //todo edycja poniżej - coś się nie zgrywa w momencie klikania zaktualizowania danych przy zmianie danych
+    //todo wyskakuje error ktory nie wiem jak naprawić
+//    @PostMapping("/updateStudent")
+//    public String updateStudent(@ModelAttribute("studentData") StudentDto studentDto) {
+//        studentService.updateStudent(studentDto);
+//        return "redirect:/students-page"; // Przekierowanie do listy studentów
+//    }
 
     @GetMapping("/searchStudent")
     public String showEditStudentForm(Model model) {
@@ -107,5 +107,12 @@ public class StudentPageController {
         model.addAttribute("studentData", student);
         return "editStudent";
     }
+
+    @PostMapping("/editStudent")
+    public String editStudentFormSecond(@ModelAttribute("studentData") StudentDto studentDto) {
+        studentService.updateStudent(studentDto);
+        return "redirect:/students-page";
+    }
+
 
 }

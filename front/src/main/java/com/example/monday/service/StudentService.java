@@ -149,10 +149,10 @@ public class StudentService {
         }
     }
 
-    public StudentDto updateStudent(StudentDto studentDto) {
+    public void updateStudent(StudentDto studentDto) {
         try {
-            return restTemplate.exchange(API_URL + "/updateStudent",
-                            HttpMethod.POST, null, new ParameterizedTypeReference<StudentDto>() {
+             restTemplate.exchange(API_URL + "/editStudent?studentDto=" + studentDto,
+                            HttpMethod.GET, null, new ParameterizedTypeReference<StudentDto>() {
                             })
                     .getBody();
         } catch (HttpClientErrorException e) {
