@@ -160,7 +160,7 @@ public class StudentService {
             // Utworzenie obiektu HttpEntity z obiektem studentDto
             HttpEntity<StudentDto> requestEntity = new HttpEntity<>(studentDto);
 
-            restTemplate.exchange(API_URL + "/editStudent", HttpMethod.POST, requestEntity,
+            restTemplate.exchange(API_URL + "/editStudent", HttpMethod.PUT, requestEntity,
                             new ParameterizedTypeReference<StudentDto>() {})
                     .getBody();
         } catch (HttpClientErrorException e) {

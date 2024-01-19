@@ -108,7 +108,7 @@ public class StudentPageController {
         return "editStudent";
     }
 
-    @PostMapping("/editStudent")
+    @PutMapping("/editStudent")
     public String editStudentFormSecond(@ModelAttribute("studentData") StudentDto studentDto) {
         studentService.updateStudent(studentDto);
         return "redirect:/students-page";

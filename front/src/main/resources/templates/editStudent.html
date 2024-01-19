@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-<form method="post" th:action="@{/students-page/editStudent}" th:object="${studentData}">
+<form method="put" th:action="@{/students-page/editStudent}" th:object="${studentData}">
     <input type="hidden" th:field="*{id}" />
 
     <label for="index">Indeks:</label>

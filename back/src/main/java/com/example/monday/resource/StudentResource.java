@@ -69,8 +69,8 @@ public class StudentResource {
         return studentService.getStudentByIndex(index);
     }
 
-    @PostMapping("/editStudent")
-    public StudentDto editStudentByIndex(@RequestParam StudentDto studentDto) {
+    @PutMapping("/editStudent")
+    public StudentDto editStudentByIndex(@RequestBody StudentDto studentDto) {
         return studentService.updateStudent(studentDto);
     }
 
